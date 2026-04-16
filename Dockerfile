@@ -2,7 +2,7 @@ FROM texlive/texlive:latest-full
 
 # Ahora vamos a usar bibtex
 RUN apt-get update && \
-    apt-get install -y texlive-latex-extra texlive-bibtex-extra texlive-lang-spanish texlive-science && \
+    apt-get install -y texlive-latex-extra texlive-bibtex-extra texlive-lang-spanish texlive-science texlive-publishers && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ./compile.sh /scripts/compile.sh
