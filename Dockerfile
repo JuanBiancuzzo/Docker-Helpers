@@ -1,5 +1,6 @@
 FROM texlive/texlive:latest-full
 
+# Ahora vamos a usar bibtex
 RUN apt-get update && \
     apt-get install -y texlive-bibtex-extra && \
     rm -rf /var/lib/apt/lists/*
