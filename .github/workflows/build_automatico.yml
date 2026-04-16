@@ -2,8 +2,9 @@ name: Buildear y pushear imagenes de DockerHub
 
 on:
   push:
-    branches-ignore:
-      - 'main' 
+    branches:
+      - '**'     
+      - '!main'  
 
 jobs:
   Build-Push:
