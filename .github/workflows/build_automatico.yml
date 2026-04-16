@@ -13,7 +13,7 @@ jobs:
         ref: ${{ github.ref_name }}
       
     - name: Buildear la imagen de Docker
-      run: docker build . --file Dockerfile --tag ${{ github.ref_name }}:latest
+      run: docker build . -t juanbiancuzzo/${{ github.ref_name }}:latest
 
     - name: Pushear la imagen a DockerHub
       run: |
