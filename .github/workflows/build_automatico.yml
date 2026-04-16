@@ -1,7 +1,9 @@
 name: Buildear y pushear imagenes de DockerHub
 
 on:
-  workflow_dispatch:
+  push:
+    branches-ignore:
+      - 'main'
 
 jobs:
   Build-Push:
@@ -13,9 +15,9 @@ jobs:
         ref: ${{ github.ref_name }}
       
     - name: Buildear la imagen de Docker
-      run: docker build . --file Dockerfile --tag ${{ github.ref_name }}:latest
+      run: docker build . -t juanbiancuzzo/${{ github.ref_name }}:latest
 
     - name: Pushear la imagen a DockerHub
       run: |
-        docker login -u juanbiancuzzo -p ${{ secrets.DOCKER_HUB_TOKEN }}
-        docker push juanbiancuzzo/name:latest ${{ github.ref_name }}:latest
+        echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u juanbiancuzzo --password-stdin 
+        docker push juanbiancuzzo/${{ github.ref_name }}:latest
