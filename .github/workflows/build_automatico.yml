@@ -1,0 +1,23 @@
+name: Buildear y pushear imagenes de DockerHub
+
+on:
+  push:
+    branches-ignore:
+      - 'main' 
+
+jobs:
+  Build-Push:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Obtener rama correspondiente
+      uses: actions/checkout@v4
+      with: # GITHUB_REF_NAME obtenemos el nombre de la rama que lo genero
+        ref: ${{ github.ref_name }}
+      
+    - name: Buildear la imagen de Docker
+      run: docker build . --file Dockerfile --tag ${{ github.ref_name }}:latest
+
+    - name: Pushear la imagen a DockerHub
+      run: |
+        docker login -u juanbiancuzzo -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        docker push juanbiancuzzo/name:latest ${{ github.ref_name }}:latest
