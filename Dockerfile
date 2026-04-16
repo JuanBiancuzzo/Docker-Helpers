@@ -1,7 +1,7 @@
 FROM texlive/texlive:latest-full
 
 RUN apt-get update && \
-    apt-get install -y biber && \
+    apt-get install -y texlive-bibtex-extra && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ./compile.sh /scripts/compile.sh
