@@ -1,10 +1,7 @@
 name: Buildear y pushear imagenes de DockerHub
 
 on:
-  push:
-    branches:
-      - '**'     
-      - '!main'  
+  workflow_dispatch:
 
 jobs:
   Build-Push:
