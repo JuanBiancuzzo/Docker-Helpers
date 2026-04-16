@@ -17,5 +17,5 @@ jobs:
 
     - name: Pushear la imagen a DockerHub
       run: |
-        docker login -u juanbiancuzzo -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u juanbiancuzzo --password-stdin 
         docker push juanbiancuzzo/name:latest ${{ github.ref_name }}:latest
